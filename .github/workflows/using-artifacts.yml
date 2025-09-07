@@ -14,6 +14,7 @@ jobs:
                 name: sample
                 path: sample.txt
     download-artifact:
+        needs: upload-artifact
         runs-on: ubuntu-latest
         steps:
           - uses: actions/checkout@v5
