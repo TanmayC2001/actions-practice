@@ -1,0 +1,27 @@
+name: Matrix Testing
+on: 
+    push:
+        branches: 
+        - main
+    pull_request:
+      branches:
+        - main
+jobs:
+    test-matrix:
+        strategy:
+            matrix:
+                python-version: [ '3.9', '3.11' ]
+                os: [ 'ubuntu-latest', 'windows-latest' ]
+        runs-on: ${{ matrix.os}}
+        steps:
+            - uses: actios/checkout@v4
+            - name: Setup Python Version ${{ matrix.python-version }}
+              uses: actions/setup-python@v5
+              with:
+                python-version: ${{ matrix.python-version }}
+            - name: Print Environment Info
+              run: |
+                python --version
+                echo "OS: ${{ matrix.os }}"
+            - name: Install Pytest
+              run: pip install pytest
