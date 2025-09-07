@@ -8,7 +8,7 @@ jobs:
         steps:
             - run: echo "This is a test job running on ${{github.ref_name}}"
     deploy-job:
-        if: github.event_name == 'push' && github.ref == 'refs/head/main'
+        if: github.event_name == 'push' && github.ref == 'refs/heads/main'
         runs-on: ubuntu-latest
         steps:
           - run: echo "This is a deploy job running on ${{github.ref_name}}"
