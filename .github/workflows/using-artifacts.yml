@@ -8,7 +8,7 @@ jobs:
         runs-on: ubuntu-latest
         steps:
           - uses: actions/checkout@v5
-          - run: echo $uptime >> sample.txt
+          - run: echo uptime >> sample.txt
           - uses: actions/upload-artifact@v4
             with:
                 name: sample
