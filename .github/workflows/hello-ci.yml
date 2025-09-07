@@ -1,0 +1,11 @@
+name: Hello CI
+on: push
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps: 
+        - uses: actions/checkout@v4
+        - name: Print Branch Name
+          run: echo "Branch name is ${{ github.ref_name }}"
+        - name: Run Python Script
+          run: python ./assets/hello.py
