@@ -1,0 +1,26 @@
+name: Using Artifacts
+on:
+    push:
+    pull_request:
+
+jobs:
+    upload-artifact:
+        runs-on: ubuntu-latest
+        steps:
+          - uses: actions/checkout@v5
+          - run: echo $uptime >> sample.txt
+          - uses: actions/upload-artifact@v4
+            with:
+                name: sample
+                path: sample.txt
+    download-artifact:
+        runs-on: ubuntu-latest
+        steps:
+          - uses: actions/checkout@v5
+          - uses: actions/download-artifact@v4
+            with:
+                name: sample
+          - run: |
+                echo "Printing Sample.txt file from Download Artifact Job"
+                cat sample.txt
+                
