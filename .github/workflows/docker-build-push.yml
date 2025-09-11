@@ -25,5 +25,5 @@ jobs:
                 context: ./assets/
                 push: ${{ github.event_name != 'pull_request' }}
                 tags: |
-                    ${{ github.sha }}
-                    latest
+                    ghcr.io/${{ github.repository }}:${{ github.sha }}
+                    ghcr.io/${{ github.repository }}:latest
