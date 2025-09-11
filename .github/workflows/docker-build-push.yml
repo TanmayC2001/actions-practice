@@ -1,0 +1,29 @@
+name: Docker Build and Push to GHCR
+on: [push]
+env:
+    REGISTRY: ghcr.io
+    IMAGE_NAME: ${{ github.repository }}
+jobs:
+    docker-build-push:
+        runs-on: ubuntu-latest
+        steps:
+            - uses: actions/checkout@v4
+            - name: Building docker image
+              run: |
+                docker build -t $IMAGE_NAME:${{ github.sha }}
+                docker tag -t $IMAGE_NAME:${{ github.sha }} $IMAGE_NAME:latest
+            - name: Setup GHCR Authentication
+              uses: docker/login-action@0d4c9c5ea7693da7b068278f7b52bda2a190a446 # v3.2.0
+              with:
+                registry: ${{ env.REGISTRY }}
+                username: ${{ github.actor }}
+                password: ${{ secrets.GITHUB_TOKEN }}
+            - name: Build and push Docker image
+              id: build-and-push
+              uses: docker/build-push-action@ca052bb54ab0790a636c9b5f226502c73d547a25 # v5.4.0
+              with:
+                context: ./assets/
+                push: ${{ github.event_name != 'pull_request' }}
+                tags: |
+                    ${{ github.sha }}
+                    latest

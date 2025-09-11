@@ -1,4 +1,1 @@
 flask
-flake8
-pytest
-numpy
