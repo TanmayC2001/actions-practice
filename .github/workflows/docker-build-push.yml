@@ -3,6 +3,9 @@ on: [push]
 env:
     REGISTRY: ghcr.io
     IMAGE_NAME: ${{ github.repository }}
+permissions:
+  contents: read
+  packages: write
 jobs:
     docker-build-push:
         runs-on: ubuntu-latest
