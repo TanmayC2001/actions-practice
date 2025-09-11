@@ -1,11 +1,12 @@
 name: Docker Build and Push to GHCR
 on: [push]
-env:
-    REGISTRY: ghcr.io
-    IMAGE_NAME: ${{ github.repository }}
 permissions:
   contents: read
   packages: write
+env:
+    REGISTRY: ghcr.io
+    IMAGE_NAME: ${{ github.repository }}
+
 jobs:
     docker-build-push:
         runs-on: ubuntu-latest
