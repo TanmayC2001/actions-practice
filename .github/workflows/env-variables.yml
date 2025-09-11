@@ -11,7 +11,7 @@ jobs:
         steps:
           - name: Print Env Variables
             run: |
-                echo "My name is : $name-of-person"
-                echo "My last name is : $last-name"
-                echo "Application Mode : $app_mode"
+                echo "My name is : ${{name-of-person}}"
+                echo "My last name is : ${{last-name}}"
+                echo "Application Mode : ${{app_mode}}"
                 echo "Secret Value : ${{secrets.my_value}}"
