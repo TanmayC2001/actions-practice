@@ -1,5 +1,5 @@
 name: Linting and Testing with Github Actions
-on: [pull_request]
+on: [push]
 jobs:
     my-job:
         runs-on: ubuntu-latest
