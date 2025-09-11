@@ -1,8 +1,8 @@
 name: Using Github Environment Variables
 on: [push]
 env:
-    name-of-person: "Tanmay"
-    last-name: "Chaudhari"
+    name_of_person: "Tanmay"
+    last_name: "Chaudhari"
 jobs:
     print-env:
         runs-on: ubuntu-latest
@@ -11,7 +11,7 @@ jobs:
         steps:
           - name: Print Env Variables
             run: |
-                echo "My name is : ${{name-of-person}}"
-                echo "My last name is : ${{last-name}}"
-                echo "Application Mode : ${{app_mode}}"
+                echo "My name is : $name_of_person"
+                echo "My last name is : $last_name"
+                echo "Application Mode : $app_mode"
                 echo "Secret Value : ${{secrets.my_value}}"
