@@ -8,10 +8,6 @@ jobs:
         runs-on: ubuntu-latest
         steps:
             - uses: actions/checkout@v4
-            - name: Building docker image
-              run: |
-                docker build -t $IMAGE_NAME:${{ github.sha }}
-                docker tag -t $IMAGE_NAME:${{ github.sha }} $IMAGE_NAME:latest
             - name: Setup GHCR Authentication
               uses: docker/login-action@0d4c9c5ea7693da7b068278f7b52bda2a190a446 # v3.2.0
               with:
