@@ -8,6 +8,7 @@ jobs:
     upload-publish:
         runs-on: ubuntu-latest
         steps:
+            - uses: actions/checkout@v4
             - name: Upload to Github Pages
               id: deployment
               uses: actions/upload-pages-artifact@v3
@@ -20,6 +21,7 @@ jobs:
             url: ${{ steps.deployment.outputs.page_url }}
         runs-on: ubuntu-latest
         steps:
+          - uses: actions/checkout@v4
           - name: Deploy to Github Pages
             id: deployment
             uses: actions/deploy-pages@v4
