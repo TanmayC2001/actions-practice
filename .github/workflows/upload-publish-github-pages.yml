@@ -1,0 +1,26 @@
+name: Upload and Publish to Github Pages
+permissions:
+    contents: read
+    pages: write
+    id-token: write
+on: [push]
+jobs:
+    upload-publish:
+        runs-on: ubuntu-latest
+        steps:
+            - name: Upload to Github Pages
+              id: deployment
+              uses: actions/upload-pages-artifact@v3
+              with:
+                path: ./assets/pages/
+    deploy:
+        needs: upload-publish
+        environment:
+            name: github-pages
+            url: ${{ steps.deployment.outputs.page_url }}
+        runs-on: ubuntu-latest
+        steps:
+          - name: Deploy to Github Pages
+            id: deployment
+            uses: actions/deploy-pages@v4
+
